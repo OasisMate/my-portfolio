@@ -69,7 +69,7 @@ function Home() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://twitter.com/YOUR_TWITTER_HANDLE"
+                  href="https://x.com/mr_ameerhamza"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -79,7 +79,7 @@ function Home() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.linkedin.com/in/YOUR_LINKEDIN_PROFILE"
+                  href="https://www.linkedin.com/in/eng-ameer-hamza/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour  home-social-icons"
@@ -89,7 +89,7 @@ function Home() {
               </li>
               <li className="social-icons">
                 <a
-                  href="https://www.instagram.com/YOUR_INSTAGRAM_HANDLE"
+                  href="https://www.instagram.com/ameerhamza_makhdoom/"
                   target="_blank"
                   rel="noreferrer"
                   className="icon-colour home-social-icons"

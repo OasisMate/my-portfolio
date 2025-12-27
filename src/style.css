@@ -794,12 +794,24 @@ button:focus {
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
   border: 1px solid rgba(0, 212, 255, 0.1);
+  position: relative;
 }
 .project-card-view:hover {
   transform: scale(1.02) !important;
   overflow: hidden !important;
   box-shadow: 0 4px 4px 5px rgba(0, 212, 255, 0.4) !important;
   border-color: rgba(0, 212, 255, 0.3);
+}
+
+.flagship-project {
+  border: 2px solid rgba(255, 215, 0, 0.5) !important;
+  box-shadow: 0 4px 15px 5px rgba(255, 215, 0, 0.2), 0 4px 5px 3px rgba(0, 153, 204, 0.3) !important;
+}
+
+.flagship-project:hover {
+  box-shadow: 0 6px 20px 8px rgba(255, 215, 0, 0.3), 0 4px 4px 5px rgba(0, 212, 255, 0.4) !important;
+  border-color: rgba(255, 215, 0, 0.8) !important;
+  transform: scale(1.05) !important;
 }
 
 .blog-card {

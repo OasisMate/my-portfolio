@@ -109,19 +109,35 @@ function Particle() {
               enable: false,
             },
             move: {
-              enable: false, // Stars stay still like real stars
+              enable: true,
+              speed: 0.1, // Slow continuous movement
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+              attract: {
+                enable: false,
+              },
             },
           },
           interactivity: {
             detect_on: "canvas",
             events: {
               onhover: {
-                enable: false,
+                enable: true,
+                mode: "repulse",
               },
               onclick: {
                 enable: false,
               },
               resize: true,
+            },
+            modes: {
+              repulse: {
+                distance: 200,
+                duration: 1,
+              },
             },
           },
           retina_detect: true,

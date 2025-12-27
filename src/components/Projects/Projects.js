@@ -8,6 +8,7 @@ import editor from "../../Assets/Projects/codeEditor.png";
 import chatify from "../../Assets/Projects/chatify.png";
 import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
+import presentia from "../../Assets/Projects/presentia.png";
 
 function Projects() {
   return (
@@ -21,6 +22,20 @@ function Projects() {
           Here are a few projects I've worked on recently.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+          {/* Presentia AI - Flagship Project */}
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={presentia}
+              isBlog={false}
+              title="Presentia AI"
+              isFlagship={true}
+              userCount="250K+"
+              description="Presentia AI is an advanced AI-powered presentation generator that transforms ideas into stunning PowerPoint presentations in seconds. With over 250,000 active users, this platform revolutionizes how professionals create presentations. Users can generate comprehensive presentations from text, PDF, DOCX, or TXT files. The platform features AI-generated images, multilingual support, customizable themes, and seamless file processing. Built with cutting-edge AI technology, it saves hours of work while delivering professional-quality results. Perfect for business pitches, academic presentations, and content creation."
+              technologies={["React", "Next.js", "AI/ML", "TypeScript", "Node.js", "Cloud Storage", "File Processing"]}
+              demoLink="https://www.presentia.ai/"
+            />
+          </Col>
+
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={chatify}
