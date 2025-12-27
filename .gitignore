@@ -27,3 +27,8 @@ yarn-error.log*
 
 Server/node_modules
 Server/config.js
+
+# Temporary image processing files
+src/Assets/home-main-extracted.png
+src/Assets/home-main-extracted-base64.txt
+src/Assets/home-main-fixed.png
