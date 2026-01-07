@@ -192,32 +192,291 @@ button:focus {
   }
   
   .capsule-container {
-    width: 90%;
-    max-width: 100%;
+    width: auto;
+    max-width: 90%;
     border-radius: 30px;
     padding: 0.8rem 1rem;
+    background: transparent !important;
+    transition: none !important;
   }
   
-  .capsule-nav {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.3rem;
+  /* Override Bootstrap collapse styles - prevent old menu flash */
+  .capsule-container .navbar-collapse {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: none !important;
+    position: relative !important;
   }
   
-  .capsule-nav .nav-link {
-    width: 100%;
+  .capsule-container .navbar-collapse.collapsing {
+    display: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    transition: none !important;
+  }
+  
+  /* Force hide when not expanded */
+  .capsule-container:not(.menu-expanded) .navbar-collapse:not(.show) {
+    display: none !important;
+  }
+  
+  /* Force show instantly when expanded */
+  .capsule-container.menu-expanded .navbar-collapse.show {
+    display: block !important;
+  }
+  
+  /* When menu is expanded - completely round */
+  .capsule-container.menu-expanded {
+    background: transparent !important;
+    padding: 15px;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+  }
+  
+  /* Hide default toggle when expanded */
+  .capsule-container.menu-expanded > .navbar-toggler {
+    display: none !important;
+  }
+  
+  /* Ship wheel container for mobile menu */
+  .menu-expanded .capsule-nav {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+  
+  /* Ship wheel circle */
+  .menu-expanded .capsule-nav::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    border: 2px solid rgba(0, 212, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: 
+      0 0 20px rgba(0, 212, 255, 0.2),
+      inset 0 0 20px rgba(0, 212, 255, 0.1);
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.03), rgba(5, 5, 10, 0.2));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+  
+  /* Hide logo in normal nav position when menu open */
+  .menu-expanded .logo-brand {
+    display: none !important;
+  }
+  
+  /* Center logo in wheel */
+  .menu-expanded .capsule-nav::before {
+    content: 'AH.';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+    font-family: 'Dancing Script', 'Great Vibes', cursive;
+    font-style: italic;
+    color: #00D4FF;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    z-index: 15;
+    letter-spacing: 2px;
+    background: rgba(5, 5, 10, 0.95);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* All nav items positioned absolutely around the wheel */
+  .menu-expanded .capsule-nav .nav-item {
+    position: absolute;
+    margin: 0 !important;
+    z-index: 5;
+  }
+  
+  /* Top - Home */
+  .menu-expanded .capsule-nav .nav-item:nth-child(1) {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Right - About */
+  .menu-expanded .capsule-nav .nav-item:nth-child(2) {
+    top: 65%;
+    right: 0;
+    transform: translateY(-30%);
+  }
+  
+  /* Bottom - Projects */
+  .menu-expanded .capsule-nav .nav-item:nth-child(3) {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Left - Resume */
+  .menu-expanded .capsule-nav .nav-item:nth-child(4) {
+    top: 65%;
+    left: -5%;
+    transform: translateY(-30%);
+  }
+  
+  /* Top-left - GitHub Star */
+  .menu-expanded .capsule-nav .fork-btn {
+    position: absolute !important;
+    top: 53px;
+    left: 0px;
+    margin: 0 !important;
+  }
+  
+  /* Bottom-right - Close button */
+  .menu-expanded .wheel-close-item {
+    position: absolute !important;
+    bottom: 135px;
+    right: .5px;
+    z-index: 10;
+  }
+  
+  .menu-expanded .wheel-close-item .close-btn {
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    border-radius: 20px;
+    padding: 0.35rem 0.7rem;
+    color: #00D4FF;
+    font-size: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+  }
+  
+  .menu-expanded .wheel-close-item .close-btn:hover {
+    background: rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* Spoke lines - straight from each item toward center */
+  .menu-expanded .capsule-nav .nav-item::after {
+    content: '';
+    position: absolute;
+    background: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* Top spoke - Home (goes down to center) */
+  .menu-expanded .capsule-nav .nav-item:nth-child(1)::after {
+    width: 2px;
+    height: 60px;
+    top: 100%;
+    left: 50%;
+    margin-left: -1px;
+    background: linear-gradient(to bottom, rgba(0, 212, 255, 0.6), transparent);
+  }
+  
+  /* Right-bottom spoke - About (goes left-up to center) */
+  .menu-expanded .capsule-nav .nav-item:nth-child(2)::after {
+    width: 50px;
+    height: 2px;
+    top: 50%;
+    right: 100%;
+    margin-top: -1px;
+    transform: rotate(44deg);
+    transform-origin: right center;
+    background: linear-gradient(to left, rgba(0, 212, 255, 0.6), transparent);
+  }
+  
+  /* Bottom spoke - Projects (goes up to center) */
+  .menu-expanded .capsule-nav .nav-item:nth-child(3)::after {
+    width: 2px;
+    height: 60px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -1px;
+    background: linear-gradient(to top, rgba(0, 212, 255, 0.6), transparent);
+  }
+  
+  /* Left spoke - Resume (goes right-up to center) */
+  .menu-expanded .capsule-nav .nav-item:nth-child(4)::after {
+    width: 50px;
+    height: 2px;
+    top: 50%;
+    left: 100%;
+    margin-top: -1px;
+    transform: rotate(-44deg);
+    transform-origin: left center;
+    background: linear-gradient(to right, rgba(0, 212, 255, 0.6), transparent);
+  }
+  
+  /* Top-left spoke - GitHub (goes down-right to center) */
+  .menu-expanded .capsule-nav .fork-btn::after {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 2px;
+    top: 50%;
+    left: 100%;
+    margin-top: -1px;
+    transform: rotate(40deg);
+    transform-origin: left center;
+    background: linear-gradient(to right, rgba(0, 212, 255, 0.6), transparent);
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+    z-index: -1;
+  }
+  
+  /* Right-top spoke - Close (goes left-down to center) */
+  .menu-expanded .wheel-close-item::after {
+    content: '';
+    position: absolute;
+    width: 55px;
+    height: 2px;
+    top: 50%;
+    right: 100%;
+    margin-top: -1px;
+    transform: rotate(-45deg);
+    transform-origin: right center;
+    background: linear-gradient(to left, rgba(0, 212, 255, 0.6), transparent);
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.3);
+    z-index: -1;
+  }
+  
+  .menu-expanded .capsule-nav .nav-link {
+    width: auto !important;
     text-align: center;
-    padding: 0.7rem 1rem !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
   
+  /* Logo styling when not in wheel (collapsed state) */
   .logo-brand {
     border-right: none;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+    border-bottom: none;
     margin-right: 0;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     padding-right: 0;
-    padding-bottom: 0.5rem;
-    width: 100%;
+    padding-bottom: 0;
+    width: auto;
     justify-content: center;
   }
   

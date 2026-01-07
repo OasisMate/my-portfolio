@@ -45,10 +45,10 @@ function ProjectCards(props) {
           </div>
         )}
         {props.ghLink && (
-          <Button variant="primary" href={props.ghLink} target="_blank">
-            <BsGithub /> &nbsp;
-            {props.isBlog ? "Blog" : "GitHub"}
-          </Button>
+        <Button variant="primary" href={props.ghLink} target="_blank">
+          <BsGithub /> &nbsp;
+          {props.isBlog ? "Blog" : "GitHub"}
+        </Button>
         )}
         {"\n"}
         {"\n"}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
@@ -10,6 +10,7 @@ import {
   AiOutlineHome,
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
+  AiOutlineClose,
 } from "react-icons/ai";
 
 import { CgFileDocument } from "react-icons/cg";
@@ -19,15 +20,21 @@ function NavBar() {
   const [navColour, updateNavbar] = useState(false);
   const location = useLocation();
 
-  function scrollHandler() {
-    if (window.scrollY >= 20) {
-      updateNavbar(true);
-    } else {
-      updateNavbar(false);
+  useEffect(() => {
+    function scrollHandler() {
+      if (window.scrollY >= 20) {
+        updateNavbar(true);
+      } else {
+        updateNavbar(false);
+      }
     }
-  }
 
-  window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("scroll", scrollHandler);
+    
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   const isActive = (path) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -43,7 +50,7 @@ function NavBar() {
       className={navColour ? "sticky capsule-navbar" : "navbar capsule-navbar"}
     >
       <Container className="d-flex justify-content-center">
-        <div className="capsule-container">
+        <div className={`capsule-container ${expand ? 'menu-expanded' : ''}`}>
           <Navbar.Brand href="/" className="d-flex logo-brand">
             <span 
               className="logo-text" 
@@ -131,6 +138,18 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.4em" }} />
               </Button>
             </Nav.Item>
+            
+            {/* Close button for mobile wheel menu */}
+            {expand && (
+              <div className="wheel-close-item">
+                <button 
+                  className="close-btn"
+                  onClick={() => updateExpanded(false)}
+                >
+                  <AiOutlineClose style={{ fontSize: "1.2em" }} /> Close
+                </button>
+              </div>
+            )}
             </Nav>
           </Navbar.Collapse>
         </div>
