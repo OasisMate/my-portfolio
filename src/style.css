@@ -1053,7 +1053,16 @@ button:focus {
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
   border: 1px solid rgba(0, 212, 255, 0.1);
-  position: relative;
+  position: relative !important;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.project-card-view .card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
 }
 .project-card-view:hover {
   transform: scale(1.02) !important;
