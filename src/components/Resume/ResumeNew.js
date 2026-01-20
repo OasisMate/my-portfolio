@@ -11,10 +11,24 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 function ResumeNew() {
   const [width, setWidth] = useState(1200);
+  const [numPages, setNumPages] = useState(null);
 
   useEffect(() => {
     setWidth(window.innerWidth);
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
+  function onDocumentLoadError(error) {
+    console.error("Error loading PDF:", error);
+  }
 
   return (
     <div>
@@ -33,8 +47,31 @@ function ResumeNew() {
         </Row>
 
         <Row className="resume">
-          <Document file={pdf} className="d-flex justify-content-center">
-            <Page pageNumber={1} scale={width > 786 ? 1.7 : 0.6} />
+          <Document 
+            file={pdf} 
+            className="d-flex justify-content-center"
+            onLoadSuccess={onDocumentLoadSuccess}
+            onLoadError={onDocumentLoadError}
+            loading={<div style={{ color: "white", textAlign: "center", padding: "20px" }}>Loading PDF...</div>}
+            error={<div style={{ color: "white", textAlign: "center", padding: "20px" }}>Failed to load PDF. Please try again.</div>}
+          >
+            {numPages && Array.from(new Array(numPages), (el, index) => (
+              <div 
+                key={`page_${index + 1}`} 
+                style={{ 
+                  marginBottom: "20px",
+                  display: "flex",
+                  justifyContent: "center"
+                }}
+              >
+                <Page
+                  pageNumber={index + 1}
+                  scale={width > 786 ? 1.7 : 0.6}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
+                />
+              </div>
+            ))}
           </Document>
         </Row>
 

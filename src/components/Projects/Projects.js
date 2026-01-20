@@ -2,15 +2,12 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
 import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import suicide from "../../Assets/Projects/suicide.png";
 import bitsOfCode from "../../Assets/Projects/blog.png";
 import presentia from "../../Assets/Projects/presentia.png";
 import groundsync from "../../Assets/Projects/groundsync.png";
 import kidsgo from "../../Assets/Projects/kidsgo.png";
+import loftiesim from "../../Assets/Projects/loftiesim.png";
 
 function Projects() {
   return (
@@ -65,14 +62,15 @@ function Projects() {
             />
           </Col>
 
+          {/* Loftiesim */}
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={chatify}
+              imgPath={loftiesim}
               isBlog={false}
-              title="Project 1"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_1"
-              demoLink="https://your-demo-link.com"
+              title="Loftiesim"
+              description="Loftiesim is a robust PHP core application built with modern PHP best practices. This enterprise-grade project demonstrates advanced backend architecture, efficient database management, and scalable solutions. The platform showcases clean code structure, security implementations, and high-performance optimization techniques."
+              technologies={["PHP", "MySQL", "JavaScript", "RESTful API", "MVC Architecture", "Database Design", "Backend Development"]}
+              demoLink="https://loftiesim.com"
             />
           </Col>
 
@@ -95,37 +93,6 @@ function Projects() {
               description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
               ghLink="https://github.com/OasisMate/PROJECT_3"
               demoLink="https://your-demo-link.com"              
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={leaf}
-              isBlog={false}
-              title="Project 4"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_4"
-              demoLink="https://your-demo-link.com"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={suicide}
-              isBlog={false}
-              title="Project 5"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_5"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="Project 6"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_6"
             />
           </Col>
         </Row>
