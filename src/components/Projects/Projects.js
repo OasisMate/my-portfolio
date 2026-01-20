@@ -2,8 +2,6 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import editor from "../../Assets/Projects/codeEditor.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
 import presentia from "../../Assets/Projects/presentia.png";
 import groundsync from "../../Assets/Projects/groundsync.png";
 import kidsgo from "../../Assets/Projects/kidsgo.png";
@@ -71,28 +69,6 @@ function Projects() {
               description="Loftiesim is a robust PHP core application built with modern PHP best practices. This enterprise-grade project demonstrates advanced backend architecture, efficient database management, and scalable solutions. The platform showcases clean code structure, security implementations, and high-performance optimization techniques."
               technologies={["PHP", "MySQL", "JavaScript", "RESTful API", "MVC Architecture", "Database Design", "Backend Development"]}
               demoLink="https://loftiesim.com"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={bitsOfCode}
-              isBlog={false}
-              title="Project 2"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_2"
-              demoLink="https://your-demo-link.com"
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={editor}
-              isBlog={false}
-              title="Project 3"
-              description="Add your project description here. Describe what technologies you used, key features, and what problem it solves."
-              ghLink="https://github.com/OasisMate/PROJECT_3"
-              demoLink="https://your-demo-link.com"              
             />
           </Col>
         </Row>
